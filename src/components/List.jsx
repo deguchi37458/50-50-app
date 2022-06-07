@@ -29,8 +29,8 @@ export default class List extends React.Component {
       // 追加
       this.state.question.push({
         title: this.refs.newTitle.value,
-        option1: this.refs.newOptions1.value,
-        option2: this.refs.newOptions2.value
+        option1: this.refs.newOption1.value,
+        option2: this.refs.newOption2.value
       });
       // 保存
       this.setState({
@@ -38,8 +38,8 @@ export default class List extends React.Component {
       });
       // 初期化
       this.refs.newTitle.value='';
-      this.refs.newOptions1.value='';
-      this.refs.newOptions2.value='';
+      this.refs.newOption1.value='';
+      this.refs.newOption2.value='';
     }
     return (
       <>
@@ -56,9 +56,9 @@ export default class List extends React.Component {
             return (
               <SwiperSlide>
                 <Card>
-                  <div class="card">
-                    <p class="title">{question.title}</p>
-                    <ButtonGroup class="button-group" disableElevation variant="contained">
+                  <div className="card">
+                    <p className="title">{question.title}</p>
+                    <ButtonGroup className="button-group" disableElevation variant="contained">
                       <Button onClick={onClickButton}>{question.option1}</Button>
                       <Button onClick={onClickButton}>{question.option2}</Button>
                     </ButtonGroup>
@@ -70,8 +70,8 @@ export default class List extends React.Component {
         </Swiper>
         <p>Register</p>
         <input type="text" ref="newTitle"/>
-        <input type="text" ref="newOptions1"/>
-        <input type="text" ref="newOptions2"/>
+        <input type="text" ref="newOption1"/>
+        <input type="text" ref="newOption2"/>
         <input type="button" value="追加" onClick={addQuestion} />
       </>
     );
