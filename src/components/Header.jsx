@@ -23,7 +23,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Ultimate Two Choices
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
