@@ -1,14 +1,13 @@
 import React from "react";
 import Card from '@mui/material/Card';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import Register from "./Register"
 
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 import "../assets/css/List.scss"
 
@@ -57,9 +56,13 @@ export default class List extends React.Component {
             return (
               <SwiperSlide>
                 <Card>
-                  <p>{question.title}</p>
-                  <input type="button" value={question.option1} onClick={onClickButton} />
-                  <input type="button" value={question.option2} onClick={onClickButton} />
+                  <div class="card">
+                    <p class="title">{question.title}</p>
+                    <ButtonGroup class="button-group" disableElevation variant="contained">
+                      <Button onClick={onClickButton}>{question.option1}</Button>
+                      <Button onClick={onClickButton}>{question.option2}</Button>
+                    </ButtonGroup>
+                  </div>
                 </Card>
               </SwiperSlide>
             )
