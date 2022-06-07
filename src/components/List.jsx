@@ -1,12 +1,23 @@
 import React from "react";
+import Card from '@mui/material/Card';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import Register from "./Register"
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+import "../assets/css/List.scss"
 
 export default class List extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       question: [
+        {title: "title1", option1: "yes", option2: "no"},
         {title: "title1", option1: "yes", option2: "no"}
       ]
     }
@@ -33,17 +44,27 @@ export default class List extends React.Component {
     }
     return (
       <>
-        <ul>
+        <Swiper
+          // install Swiper modules
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={50}
+          slidesPerView={1}
+          // navigation
+          // pagination={{ clickable: true }}
+          // scrollbar={{ draggable: true }}
+        >
           {this.state.question.map((question, i) => {
             return (
-              <li>
-                <p>{question.title}</p>
-                <input type="button" value={question.option1} onClick={onClickButton} />
-                <input type="button" value={question.option2} onClick={onClickButton} />
-              </li>
+              <SwiperSlide>
+                <Card>
+                  <p>{question.title}</p>
+                  <input type="button" value={question.option1} onClick={onClickButton} />
+                  <input type="button" value={question.option2} onClick={onClickButton} />
+                </Card>
+              </SwiperSlide>
             )
           })}
-        </ul>
+        </Swiper>
         <p>Register</p>
         <input type="text" ref="newTitle"/>
         <input type="text" ref="newOptions1"/>
