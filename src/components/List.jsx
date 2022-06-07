@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
+import Register from "./Register"
 
 export default class List extends React.Component {
   constructor(props){
@@ -27,6 +28,7 @@ export default class List extends React.Component {
             )
           })}
         </ul>
+        <Register />
       </>
     );
   }
