@@ -5,6 +5,9 @@ import { Header } from "./components/Header"
 import Home from "./components/Home"
 import List from "./components/List"
 
+import "./assets/css/reset.min.css";
+import "./assets/css/App.scss";
+
 export const App = () => {
   return (
     <>
