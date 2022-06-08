@@ -9,9 +9,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 
-import "../assets/css/List.scss"
+import "../assets/css/Recents.scss"
 
-export default class List extends React.Component {
+export default class Recents extends React.Component {
   constructor(props){
     super(props);
     this.state = {

@@ -22,7 +22,7 @@ export const Nav = () => {
         }}
       >
         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} component={Link} to="/"/>
-        <BottomNavigationAction label="Ranking" icon={<StarIcon />} component={Link} to="/list"/>
+        <BottomNavigationAction label="Ranking" icon={<StarIcon />} component={Link} to="/ranking"/>
         <BottomNavigationAction label="Info" icon={<InfoIcon />} component={Link} to="/info"/>
       </BottomNavigation>
     </Box>

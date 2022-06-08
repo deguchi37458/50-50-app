@@ -2,8 +2,9 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Header } from "./components/Header"
-import Home from "./components/Home"
-import List from "./components/List"
+import Recents from "./components/Recents"
+import Ranking from "./components/Ranking"
+import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import "./assets/css/reset.min.css";
@@ -15,8 +16,9 @@ export const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/list" element={<List />} />
+          <Route exact path="/" element={<Recents />} />
+          <Route path="/ranking" element={<Ranking />} />
+          <Route path="/info" element={<Info />} />
         </Routes>
         <Nav />
       </BrowserRouter>
