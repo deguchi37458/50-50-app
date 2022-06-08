@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Header } from "./components/Header"
@@ -7,6 +7,9 @@ import Ranking from "./components/Ranking"
 import Create from "./components/Create"
 import Info from "./components/Info"
 import { Nav } from "./components/Nav"
+
+import db from  "./firebase";
+import {collection, getDocs} from "firebase/firestore"
 
 import "./assets/css/reset.min.css";
 import "./assets/css/App.scss";
