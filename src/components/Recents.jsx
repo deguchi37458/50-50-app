@@ -16,14 +16,14 @@ export default class Recents extends React.Component {
     super(props);
     this.state = {
       question: [
-        {title: "title1", option1: "yes", option2: "no"},
-        {title: "title1", option1: "yes", option2: "no"}
+        {id: 1, title: "title1", option1: "yes", option2: "no"},
+        {id: 2, title: "title2", option1: "left", option2: "right"}
       ]
     }
   }
   render() {
-    const onClickButton = () => {
-      console.log("ok");
+    const onClickButton = (e) => {
+        console.log(this.state.question)
     }
     const addQuestion = () => {
       // 追加
@@ -59,8 +59,8 @@ export default class Recents extends React.Component {
                   <div className="card">
                     <p className="title">{question.title}</p>
                     <ButtonGroup className="button-group" disableElevation variant="contained">
-                      <Button onClick={onClickButton}>{question.option1}</Button>
-                      <Button onClick={onClickButton}>{question.option2}</Button>
+                      <Button name="option1" onClick={onClickButton}>{question.option1}</Button>
+                      <Button name="option2" onClick={onClickButton}>{question.option2}</Button>
                     </ButtonGroup>
                   </div>
                 </Card>

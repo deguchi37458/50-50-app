@@ -12,8 +12,7 @@ import "../assets/css/Header.scss"
 export const Header = () => {
   return (
     <>
-      <div className="root">
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} style={{height: '56px'}}>
         <AppBar position="fixed">
           <Toolbar>
             <IconButton
@@ -32,7 +31,6 @@ export const Header = () => {
           </Toolbar>
         </AppBar>
         </Box>
-      </div>
     </>
   )
 }
