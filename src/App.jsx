@@ -12,13 +12,22 @@ import "./assets/css/reset.min.css";
 import "./assets/css/App.scss";
 
 export default class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      question: [
+        {id: 1, title: "title1", option1: "yes", option2: "no"},
+        {id: 2, title: "title2", option1: "left", option2: "right"}
+      ]
+    }
+  }
   render(){
     return (
       <>
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Recents title="this.state"/>} />
+            <Route exact path="/" element={<Recents question={this.state.question}/>} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/create" element={<Create />} />
             <Route path="/info" element={<Info />} />

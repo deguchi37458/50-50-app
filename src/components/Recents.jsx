@@ -12,15 +12,6 @@ import 'swiper/css';
 import "../assets/css/Recents.scss"
 
 export default class Recents extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      question: [
-        {id: 1, title: "title1", option1: "yes", option2: "no"},
-        {id: 2, title: "title2", option1: "left", option2: "right"}
-      ]
-    }
-  }
   render() {
     const onClickButton = (e) => {
         console.log(this.state.question)
@@ -52,7 +43,7 @@ export default class Recents extends React.Component {
           // pagination={{ clickable: true }}
           // scrollbar={{ draggable: true }}
         >
-          {this.state.question.map((question, i) => {
+          {this.props.question.map((question, i) => {
             return (
               <SwiperSlide>
                 <Card>
