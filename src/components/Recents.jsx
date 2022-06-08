@@ -5,8 +5,6 @@ import Button from '@mui/material/Button';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// import Register from "./Register"
-
 import 'swiper/css';
 
 import "../assets/css/Recents.scss"
@@ -15,22 +13,6 @@ export default class Recents extends React.Component {
   render() {
     const onClickButton = (e) => {
         console.log(this.state.question)
-    }
-    const addQuestion = () => {
-      // 追加
-      this.state.question.push({
-        title: this.refs.newTitle.value,
-        option1: this.refs.newOption1.value,
-        option2: this.refs.newOption2.value
-      });
-      // 保存
-      this.setState({
-        question : this.state.question
-      });
-      // 初期化
-      this.refs.newTitle.value='';
-      this.refs.newOption1.value='';
-      this.refs.newOption2.value='';
     }
     return (
       <>
@@ -59,11 +41,6 @@ export default class Recents extends React.Component {
             )
           })}
         </Swiper>
-        <p>Register</p>
-        <input type="text" ref="newTitle"/>
-        <input type="text" ref="newOption1"/>
-        <input type="text" ref="newOption2"/>
-        <input type="button" value="追加" onClick={addQuestion} />
       </>
     );
   }

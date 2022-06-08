@@ -21,6 +21,23 @@ export default class App extends React.Component{
       ]
     }
   }
+  addQuestion = (e) => {
+    console.log(e);
+    // // 追加
+    // this.state.question.push({
+    //   title: this.refs.newTitle.value,
+    //   option1: this.refs.newOption1.value,
+    //   option2: this.refs.newOption2.value
+    // });
+    // // 保存
+    // this.setState({
+    //   question : this.state.question
+    // });
+    // // 初期化
+    // this.refs.newTitle.value='';
+    // this.refs.newOption1.value='';
+    // this.refs.newOption2.value='';
+  }
   render(){
     return (
       <>
@@ -29,7 +46,7 @@ export default class App extends React.Component{
           <Routes>
             <Route exact path="/" element={<Recents question={this.state.question}/>} />
             <Route path="/ranking" element={<Ranking />} />
-            <Route path="/create" element={<Create />} />
+            <Route path="/create" element={<Create addQuestion={() => {this.addQuestion();}}/>} />
             <Route path="/info" element={<Info />} />
           </Routes>
           <Nav />
