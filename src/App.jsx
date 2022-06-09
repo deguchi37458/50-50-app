@@ -9,23 +9,30 @@ import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import db from  "./firebase";
-import {collection, getDocs} from "firebase/firestore"
+import {collection, getDocs, orderBy, query, onSnapshot} from "firebase/firestore"
 
 import "./assets/css/reset.min.css";
 import "./assets/css/App.scss";
 
-export default class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      question: [
-        {id: 1, title: "title1", option1: "yes", option2: "no"},
-        {id: 2, title: "title2", option1: "left", option2: "right"}
-      ]
-    }
-  }
-  addQuestion = (e) => {
-    console.log(e);
+export const App = () => {
+  const [posts, setPosts] = useEffect([]);
+  useEffect(() => {
+    const postData = collection(db, "posts");
+    getDocs(postData).then((snapShot) => {
+      console.log(snapShop.docs.map((doc) => doc.data()));
+    })
+  }, []);
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     question: [
+  //       {id: 1, title: "title1", option1: "yes", option2: "no"},
+  //       {id: 2, title: "title2", option1: "left", option2: "right"}
+  //     ]
+  //   }
+  // }
+  // addQuestion = (e) => {
+  //   console.log(e);
     // // 追加
     // this.state.question.push({
     //   title: this.refs.newTitle.value,
@@ -40,8 +47,8 @@ export default class App extends React.Component{
     // this.refs.newTitle.value='';
     // this.refs.newOption1.value='';
     // this.refs.newOption2.value='';
-  }
-  render(){
+  // }
+  // render(){
     return (
       <>
         <BrowserRouter>
@@ -56,5 +63,5 @@ export default class App extends React.Component{
         </BrowserRouter>
       </>
     );
-  }
+  // }
 }; 
