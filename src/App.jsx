@@ -12,7 +12,6 @@ import db from  "./firebase";
 import {query, collection, onSnapshot, orderBy} from "firebase/firestore"
 
 import "./assets/css/reset.min.css";
-import "./assets/css/App.scss";
 
 export const App = () => {
   const [posts, setPosts] = useState([]);

@@ -5,12 +5,29 @@ import Button from '@mui/material/Button';
 // import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
-import db from  "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+// import db from  "../firebase";
+// import { collection, addDoc } from "firebase/firestore";
 
 import 'swiper/css';
 
-import "../assets/css/Recents.scss"
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
+const card = css`
+  padding: 20px;
+`;
+
+const title = css`
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
+const buttonGroup = css`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+`;
+
 
 export default class Recents extends React.Component {
   onClickButton = (e) =>{
@@ -37,9 +54,9 @@ export default class Recents extends React.Component {
             return (
               // <SwiperSlide>
                 <Card>
-                  <div className="card">
-                    <p className="title">{post.question}</p>
-                    <ButtonGroup className="button-group" disableElevation variant="contained">
+                  <div css={card}>
+                    <p css={title}>{post.question}</p>
+                    <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                       <Button name="answer1" onClick={this.onClickButton}>{post.answer1}</Button>
                       <Button name="answer2" onClick={this.onClickButton}>{post.answer2}</Button>
                     </ButtonGroup>

@@ -8,13 +8,20 @@ import StarIcon from '@mui/icons-material/Star';
 import CreateIcon from '@mui/icons-material/Create';
 import InfoIcon from '@mui/icons-material/Info';
 
-import "../assets/css/Nav.scss"
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react"
+
+const nav = css`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+`;
 
 export const Nav = () => {
   const [value, setValue] = React.useState(0);
-
   return (
-    <Box className="nav">
+    <Box css={nav}>
       <BottomNavigation
         showLabels
         value={value}
