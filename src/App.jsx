@@ -9,7 +9,7 @@ import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import db from  "./firebase";
-import {collection, onSnapshot} from "firebase/firestore"
+import {query, collection, onSnapshot, orderBy} from "firebase/firestore"
 
 import "./assets/css/reset.min.css";
 import "./assets/css/App.scss";
@@ -17,7 +17,7 @@ import "./assets/css/App.scss";
 export const App = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    const postData = collection(db, "posts");
+    const postData = query(collection(db, "posts"), orderBy("question"));
     onSnapshot(postData, (querySnapshot) => {
       // console.log(querySnapshot.docs);
       setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));

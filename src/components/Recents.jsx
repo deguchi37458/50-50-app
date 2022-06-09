@@ -2,8 +2,8 @@ import React from "react";
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+// import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 
@@ -16,7 +16,7 @@ export default class Recents extends React.Component {
     }
     return (
       <>
-        <Swiper
+        {/* <Swiper
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={50}
@@ -24,10 +24,10 @@ export default class Recents extends React.Component {
           // navigation
           // pagination={{ clickable: true }}
           // scrollbar={{ draggable: true }}
-        >
+        > */}
           {this.props.posts.map((post, i) => {
             return (
-              <SwiperSlide>
+              // <SwiperSlide>
                 <Card>
                   <div className="card">
                     <p className="title">{post.question}</p>
@@ -37,10 +37,10 @@ export default class Recents extends React.Component {
                     </ButtonGroup>
                   </div>
                 </Card>
-              </SwiperSlide>
+              // </SwiperSlide>
             )
           })}
-        </Swiper>
+        {/* </Swiper> */}
       </>
     );
   }
