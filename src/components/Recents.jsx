@@ -10,10 +10,10 @@ import 'swiper/css';
 import "../assets/css/Recents.scss"
 
 export default class Recents extends React.Component {
+  onClickButton = () =>{
+    console.log("me");
+  }
   render() {
-    const onClickButton = (e) => {
-        console.log(this.state.question)
-    }
     return (
       <>
         {/* <Swiper
@@ -32,8 +32,8 @@ export default class Recents extends React.Component {
                   <div className="card">
                     <p className="title">{post.question}</p>
                     <ButtonGroup className="button-group" disableElevation variant="contained">
-                      <Button name="option1" onClick={onClickButton}>{post.answer1}</Button>
-                      <Button name="option2" onClick={onClickButton}>{post.answer2}</Button>
+                      <Button name="option1" onClick={this.onClickButton}>{post.answer1}</Button>
+                      <Button name="option2" onClick={this.onClickButton}>{post.answer2}</Button>
                     </ButtonGroup>
                   </div>
                 </Card>

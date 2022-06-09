@@ -1,6 +1,5 @@
 import React from "react";
 
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -8,33 +7,30 @@ import db from  "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
 export default class Create extends React.Component {
+  constructor(props) {
+    super(props);
+    this.question = React.createRef();
+    this.answer1 = React.createRef();
+    this.answer2 = React.createRef();
+  }
   addPost = () =>{
-    console.log(this.refs.question.value);
+    console.log(this.question.current.value);
     addDoc(collection(db, "posts"), {
-      question: this.refs.question.value,
-      answer1: this.refs.answer1.value,
-      answer2: this.refs.answer2.value
+      question: this.question.current.value,
+      answer1: this.answer1.current.value,
+      answer2: this.answer2.current.value
     });
   }
   render() {
     return (
       <>
         <h1>Create</h1>
-        {/* <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete="off"
-        > */}
-          <form>
-            <input type="text" ref="question" />
-            <input type="text" ref="answer1" />
-            <input type="text" ref="answer2" />
-            <input type="button" value="追加" onClick={this.addPost} />
-          </form>
-        {/* </Box> */}
+        <form>
+          <TextField id="outlined-basic" label="Question" variant="outlined" inputRef={this.question} />
+          <TextField id="outlined-basic" label="Answer1" variant="outlined" inputRef={this.answer1} />
+          <TextField id="outlined-basic" label="Answer2" variant="outlined" inputRef={this.answer2} />
+          <Button variant="contained" onClick={this.addPost}>追加</Button>
+        </form>
       </>
     );
   }
