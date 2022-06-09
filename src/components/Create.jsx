@@ -18,7 +18,9 @@ export default class Create extends React.Component {
     addDoc(collection(db, "posts"), {
       question: this.question.current.value,
       answer1: this.answer1.current.value,
-      answer2: this.answer2.current.value
+      answer2: this.answer2.current.value,
+      vote1: 0,
+      vote2: 0
     });
   }
   render() {

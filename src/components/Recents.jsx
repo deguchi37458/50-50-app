@@ -5,13 +5,21 @@ import Button from '@mui/material/Button';
 // import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
+import db from  "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 import 'swiper/css';
 
 import "../assets/css/Recents.scss"
 
 export default class Recents extends React.Component {
-  onClickButton = () =>{
-    console.log("me");
+  onClickButton = (e) =>{
+    console.log(e.target.name);
+    if(e.target.name === "answer1"){
+      console.log("1");
+    }else{
+      console.log("2");
+    }
   }
   render() {
     return (
@@ -32,8 +40,8 @@ export default class Recents extends React.Component {
                   <div className="card">
                     <p className="title">{post.question}</p>
                     <ButtonGroup className="button-group" disableElevation variant="contained">
-                      <Button name="option1" onClick={this.onClickButton}>{post.answer1}</Button>
-                      <Button name="option2" onClick={this.onClickButton}>{post.answer2}</Button>
+                      <Button name="answer1" onClick={this.onClickButton}>{post.answer1}</Button>
+                      <Button name="answer2" onClick={this.onClickButton}>{post.answer2}</Button>
                     </ButtonGroup>
                   </div>
                 </Card>
