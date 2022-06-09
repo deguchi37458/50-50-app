@@ -9,54 +9,28 @@ import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import db from  "./firebase";
-import {collection, getDocs, orderBy, query, onSnapshot} from "firebase/firestore"
+import {collection, onSnapshot} from "firebase/firestore"
 
 import "./assets/css/reset.min.css";
 import "./assets/css/App.scss";
 
 export const App = () => {
-  const [posts, setPosts] = useEffect([]);
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const postData = collection(db, "posts");
-    getDocs(postData).then((snapShot) => {
-      console.log(snapShop.docs.map((doc) => doc.data()));
-    })
+    onSnapshot(postData, (querySnapshot) => {
+      // console.log(querySnapshot.docs);
+      setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+    });
   }, []);
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     question: [
-  //       {id: 1, title: "title1", option1: "yes", option2: "no"},
-  //       {id: 2, title: "title2", option1: "left", option2: "right"}
-  //     ]
-  //   }
-  // }
-  // addQuestion = (e) => {
-  //   console.log(e);
-    // // 追加
-    // this.state.question.push({
-    //   title: this.refs.newTitle.value,
-    //   option1: this.refs.newOption1.value,
-    //   option2: this.refs.newOption2.value
-    // });
-    // // 保存
-    // this.setState({
-    //   question : this.state.question
-    // });
-    // // 初期化
-    // this.refs.newTitle.value='';
-    // this.refs.newOption1.value='';
-    // this.refs.newOption2.value='';
-  // }
-  // render(){
     return (
       <>
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Recents question={this.state.question}/>} />
+            <Route exact path="/" element={<Recents posts={posts}/>} />
             <Route path="/ranking" element={<Ranking />} />
-            <Route path="/create" element={<Create addQuestion={() => {this.addQuestion();}}/>} />
+            <Route path="/create" element={<Create />} />
             <Route path="/info" element={<Info />} />
           </Routes>
           <Nav />

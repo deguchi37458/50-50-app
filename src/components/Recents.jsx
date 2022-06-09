@@ -25,15 +25,15 @@ export default class Recents extends React.Component {
           // pagination={{ clickable: true }}
           // scrollbar={{ draggable: true }}
         >
-          {this.props.question.map((question, i) => {
+          {this.props.posts.map((post, i) => {
             return (
               <SwiperSlide>
                 <Card>
                   <div className="card">
-                    <p className="title">{question.title}</p>
+                    <p className="title">{post.question}</p>
                     <ButtonGroup className="button-group" disableElevation variant="contained">
-                      <Button name="option1" onClick={onClickButton}>{question.option1}</Button>
-                      <Button name="option2" onClick={onClickButton}>{question.option2}</Button>
+                      <Button name="option1" onClick={onClickButton}>{post.answer1}</Button>
+                      <Button name="option2" onClick={onClickButton}>{post.answer2}</Button>
                     </ButtonGroup>
                   </div>
                 </Card>

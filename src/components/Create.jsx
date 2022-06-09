@@ -4,7 +4,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+import db from  "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 export default class Create extends React.Component {
+  addPost = () =>{
+    console.log("add");
+    addDoc(collection(db, "posts"), {
+      question: "Los Angeles",
+      answer1: "CA",
+      answer2: "USA"
+    });
+  }
   render() {
     return (
       <>
@@ -21,11 +32,7 @@ export default class Create extends React.Component {
           <TextField id="standard-basic" label="Answer1" variant="standard" />
           <TextField id="standard-basic" label="Answer2" variant="standard" />
         </Box>
-        <Button onClick={()=>{this.props.addQuestion();}}>追加</Button>
-        {/* <input type="text" ref="newTitle"/>
-        <input type="text" ref="newOption1"/>
-        <input type="text" ref="newOption2"/>
-        <input type="button" value="追加" onClick={()=>{this.props.addQuestion();}} /> */}
+        <Button onClick={()=>{this.addPost();}}>追加</Button>
       </>
     );
   }
