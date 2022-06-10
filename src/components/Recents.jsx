@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
 import db from  "../firebase";
-import {query, collection, onSnapshot, orderBy} from "firebase/firestore"
+import {collection,getDocs} from "firebase/firestore"
 
 // import 'swiper/css';
 
@@ -32,9 +32,11 @@ export const Recents = () => {
 
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    const postData = query(collection(db, "posts"), orderBy("question"));
-    onSnapshot(postData, (querySnapshot) => {
-      console.log(querySnapshot.docs);
+    // コレクションの参照
+    const postRef = collection(db, "posts");
+    // 複数のドキュメントが入っているのでgetDocs、getDocsによりQueryを使用することができる。
+    getDocs(postRef).then((querySnapshot) => {
+      //querySnapshot.docsの中身を展開。
       setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
     });
   }, []);
