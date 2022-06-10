@@ -9,18 +9,26 @@ import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import "./assets/css/reset.min.css";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
+const wrapper = css`
+  padding: 20px;
+`;
 
 export const App = () => {
     return (
       <>
         <BrowserRouter>
           <Header />
+          <div css={wrapper}>
           <Routes>
             <Route exact path="/" element={<Recents />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/create" element={<Create />} />
             <Route path="/info" element={<Info />} />
           </Routes>
+          </div>
           <Nav />
         </BrowserRouter>
       </>
