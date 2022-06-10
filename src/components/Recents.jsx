@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
 import db from  "../firebase";
-import { doc, collection, getDocs, updateDoc, increment} from "firebase/firestore"
+import { doc, collection, onSnapshot, updateDoc, increment} from "firebase/firestore"
 
 // import 'swiper/css';
 
@@ -34,19 +34,20 @@ export const Recents = () => {
   useEffect(() => {
     // コレクションの参照
     const postRef = collection(db, "posts");
-    // 複数のドキュメントが入っているのでgetDocs、getDocsによりQueryを使用することができる。
-    getDocs(postRef).then((querySnapshot) => {
+    // onSnapshotでリアルタイムにデータを取得
+    const unsub = onSnapshot(postRef,(querySnapshot) => {
       //querySnapshot.docsの中身を展開。ドキュメントIDをidとする。
       setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
+    return unsub;
   }, []);
 
-  const vote1 = (id) => {
+  const vote1 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote1 : increment(1)
     });
   }
-  const vote2 = (id) => {
+  const vote2 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote2 : increment(1)
     });
@@ -72,6 +73,8 @@ export const Recents = () => {
                   <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                     <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
                     <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
+                    <p>{post.vote1}</p>
+                    <p>{post.vote2}</p>
                   </ButtonGroup>
                 </div>
               </Card>
