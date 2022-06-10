@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
 import db from  "../firebase";
-import { doc, collection, onSnapshot, updateDoc, increment} from "firebase/firestore"
+import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
 
 // import 'swiper/css';
 
@@ -33,7 +33,7 @@ export const Recents = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     // コレクションの参照
-    const postRef = collection(db, "posts");
+    const postRef = query(collection(db, "posts"), orderBy("timestamp", "desc"));
     // onSnapshotでリアルタイムにデータを取得
     const unsub = onSnapshot(postRef,(querySnapshot) => {
       //querySnapshot.docsの中身を展開。ドキュメントIDをidとする。

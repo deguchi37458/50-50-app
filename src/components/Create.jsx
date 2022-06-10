@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 import db from  "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default class Create extends React.Component {
   constructor(props) {
@@ -20,7 +20,8 @@ export default class Create extends React.Component {
       answer1: this.answer1.current.value,
       answer2: this.answer2.current.value,
       vote1: 0,
-      vote2: 0
+      vote2: 0,
+      timestamp: serverTimestamp()
     });
   }
   render() {
