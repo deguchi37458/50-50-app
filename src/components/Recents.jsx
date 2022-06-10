@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
 import db from  "../firebase";
-import {collection,getDocs} from "firebase/firestore"
+import { doc, collection, getDocs, updateDoc, increment} from "firebase/firestore"
 
 // import 'swiper/css';
 
@@ -36,18 +36,20 @@ export const Recents = () => {
     const postRef = collection(db, "posts");
     // 複数のドキュメントが入っているのでgetDocs、getDocsによりQueryを使用することができる。
     getDocs(postRef).then((querySnapshot) => {
-      //querySnapshot.docsの中身を展開。
-      setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data() })));
+      //querySnapshot.docsの中身を展開。ドキュメントIDをidとする。
+      setPosts(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   }, []);
 
-  const onClickButton = (e) => {
-    console.log(e.target.name);
-    if(e.target.name === "answer1"){
-      console.log("1");
-    }else{
-      console.log("2");
-    }
+  const vote1 = (id) => {
+    updateDoc(doc(db, "posts", id), {
+      vote1 : increment(1)
+    });
+  }
+  const vote2 = (id) => {
+    updateDoc(doc(db, "posts", id), {
+      vote2 : increment(1)
+    });
   }
 
   return (
@@ -61,15 +63,15 @@ export const Recents = () => {
         // pagination={{ clickable: true }}
         // scrollbar={{ draggable: true }}
       > */}
-        {posts.map((post, i) => {
+        {posts.map((post) => {
           return (
             // <SwiperSlide>
               <Card>
                 <div css={card}>
                   <p css={title}>{post.question}</p>
                   <ButtonGroup css={buttonGroup} disableElevation variant="contained">
-                    <Button name="answer1" onClick={onClickButton}>{post.answer1}</Button>
-                    <Button name="answer2" onClick={onClickButton}>{post.answer2}</Button>
+                    <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
+                    <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
                   </ButtonGroup>
                 </div>
               </Card>
