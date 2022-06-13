@@ -84,7 +84,7 @@ export const Recents = () => {
                         ],
                         borderWidth: 1,
                         rotation: 180,
-                        circumferencw :0,
+                        circumference :360,
                       },
                     ],
                   }}
