@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-// import { Swiper, SwiperSlide } from 'swiper/react';
 
 import db from  "../firebase";
 import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
-
-// import 'swiper/css';
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -55,33 +51,21 @@ export const Recents = () => {
 
   return (
     <>
-      {/* <Swiper
-        // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={50}
-        slidesPerView={1}
-        // navigation
-        // pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
-      > */}
         {posts.map((post) => {
           return (
-            // <SwiperSlide>
-              <Card>
-                <div css={card}>
-                  <p css={title}>{post.question}</p>
-                  <ButtonGroup css={buttonGroup} disableElevation variant="contained">
-                    <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
-                    <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
-                    <p>{post.vote1}</p>
-                    <p>{post.vote2}</p>
-                  </ButtonGroup>
-                </div>
-              </Card>
-            // </SwiperSlide>
+            <Card>
+              <div css={card}>
+                <p css={title}>{post.question}</p>
+                <ButtonGroup css={buttonGroup} disableElevation variant="contained">
+                  <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
+                  <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
+                  <p>{post.vote1}</p>
+                  <p>{post.vote2}</p>
+                </ButtonGroup>
+              </div>
+            </Card>
           )
         })}
-      {/* </Swiper> */}
     </>
   ); 
 }
