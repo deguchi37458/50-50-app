@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
+import 'chart.js/auto';
+import { Pie } from 'react-chartjs-2';
 
 import db from  "../firebase";
 import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
@@ -19,6 +21,7 @@ const title = css`
 `;
 
 const buttonGroup = css`
+  width: 100%;
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -59,9 +62,33 @@ export const Recents = () => {
                 <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                   <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
                   <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
-                  <p>{post.vote1}</p>
-                  <p>{post.vote2}</p>
+                  {/* <p>{post.vote1}</p>
+                  <p>{post.vote2}</p> */}
                 </ButtonGroup>
+                <Pie
+                  data ={{
+                    labels: [post.answer1, post.answer2],
+                    datasets: [
+                      {
+                        // label: post.answer1,
+                        data: [post.vote1, post.vote2],
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+
+                        ],
+                        borderWidth: 1,
+                        rotation: 180,
+                        circumferencw :0,
+                      },
+                    ],
+                  }}
+                />
               </div>
             </Card>
           )

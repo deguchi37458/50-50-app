@@ -5,3 +5,4 @@
 - React
 - firebase(database)
 - material-ui
+- react-chartjs2
