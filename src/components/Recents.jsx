@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 import Card from '@mui/material/Card';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+// import ButtonGroup from '@mui/material/ButtonGroup';
+// import Button from '@mui/material/Button';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
 import 'chart.js/auto';
 import { Pie } from 'react-chartjs-2';
 
@@ -22,7 +27,14 @@ const title = css`
   margin-bottom: 20px;
 `;
 
-const buttonGroup = css`
+// const buttonGroup = css`
+//   width: 100%;
+//   display: flex;
+//   gap: 10px;
+//   justify-content: center;
+// `;
+
+const radioGroup = css`
   width: 100%;
   display: flex;
   gap: 10px;
@@ -45,19 +57,23 @@ export const Recents = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['vote'])
 
-  const vote1 = async (id) => {
-    updateDoc(doc(db, "posts", id), {
-      vote1 : increment(1)
-    });
-    // removeCookie("vote", posts);
-  }
-  const vote2 = async (id) => {
-    updateDoc(doc(db, "posts", id), {
-      vote2 : increment(1)
-    });
-    // removeCookie("vote", posts);
+  const vote = (id, answer) => {
+    setCookie(id, answer);
+    console.log(cookies.id);
   }
 
+  // const vote1 = async (id) => {
+  //   updateDoc(doc(db, "posts", id), {
+  //     vote1 : increment(1)
+  //   });
+  //   setCookie("vote");
+  // }
+  // const vote2 = async (id) => {
+  //   updateDoc(doc(db, "posts", id), {
+  //     vote2 : increment(1)
+  //   });
+  //   setCookie("vote");
+  // }
 
   return (
     <>
@@ -66,28 +82,29 @@ export const Recents = () => {
             <Card>
               <div css={card}>
                 <p css={title}>{post.question}</p>
-                <ButtonGroup css={buttonGroup} disableElevation variant="contained">
+                {/* <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                   <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
                   <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
-                  {/* <p>{post.vote1}</p>
-                  <p>{post.vote2}</p> */}
-                </ButtonGroup>
+                </ButtonGroup> */}
+                <RadioGroup css={radioGroup}
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value={post.vote1} control={<Radio />} label={post.answer1} onChange={() => vote(post.id, post.answer1)} />
+                  <FormControlLabel value={post.vote2} control={<Radio />} label={post.answer2} onChange={() => vote(post.id, post.answer2)} />
+                </RadioGroup>
                 <Pie
                   data ={{
-                    labels: [post.answer1, post.answer2],
                     datasets: [
                       {
-                        // label: post.answer1,
                         data: [post.vote1, post.vote2],
                         backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(54, 162, 235, 0.2)',
-
                         ],
                         borderColor: [
                           'rgba(255, 99, 132, 1)',
                           'rgba(54, 162, 235, 1)',
-
                         ],
                         borderWidth: 1,
                         rotation: 180,
