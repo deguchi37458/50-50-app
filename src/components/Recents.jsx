@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
@@ -41,16 +43,21 @@ export const Recents = () => {
     return unsub;
   }, []);
 
+  const [cookies, setCookie, removeCookie] = useCookies(['vote'])
+
   const vote1 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote1 : increment(1)
     });
+    // removeCookie("vote", posts);
   }
   const vote2 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote2 : increment(1)
     });
+    // removeCookie("vote", posts);
   }
+
 
   return (
     <>

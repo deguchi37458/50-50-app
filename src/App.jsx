@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CookiesProvider } from "react-cookie";
 
 import { Header } from "./components/Header"
 import { Recents } from "./components/Recents"
@@ -22,12 +23,14 @@ export const App = () => {
         <BrowserRouter>
           <Header />
           <div css={wrapper}>
-          <Routes>
-            <Route exact path="/" element={<Recents />} />
-            <Route path="/ranking" element={<Ranking />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/info" element={<Info />} />
-          </Routes>
+          <CookiesProvider>
+            <Routes>
+              <Route exact path="/" element={<Recents />} />
+              <Route path="/ranking" element={<Ranking />} />
+              <Route path="/create" element={<Create />} />
+              <Route path="/info" element={<Info />} />
+            </Routes>
+          </CookiesProvider>
           </div>
           <Nav />
         </BrowserRouter>
