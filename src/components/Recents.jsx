@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 // import FormControl from '@mui/material/FormControl';
 
 import 'chart.js/auto';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 import db from  "../firebase";
 import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
@@ -25,6 +25,10 @@ const card = css`
 const title = css`
   font-size: 20px;
   margin-bottom: 20px;
+  span {
+    font-size: 24px;
+    margin-right: 5px;
+  }
 `;
 
 const buttonGroup = css`
@@ -32,6 +36,18 @@ const buttonGroup = css`
   display: flex;
   gap: 10px;
   justify-content: center;
+`;
+
+const voteButton1 = css`
+  color: #000; 
+  border: none;
+  background-color: rgba(255, 99, 132, 0.2);
+`;
+
+const voteButton2 = css`
+  color: #000;
+  border: none;
+  background-color: rgba(54, 162, 235, 0.2);
 `;
 
 // const radioGroup = css`
@@ -81,10 +97,10 @@ export const Recents = () => {
           return (
             <Card>
               <div css={card}>
-                <p css={title}>{post.question}</p>
+                <p css={title}><span>Q.</span>{post.question}</p>
                 <ButtonGroup css={buttonGroup} disableElevation variant="contained">
-                  <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
-                  <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
+                  <Button css={voteButton1} name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
+                  <Button css={voteButton2} name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
                 </ButtonGroup>
                 {/* <RadioGroup css={radioGroup}
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -93,7 +109,7 @@ export const Recents = () => {
                   <FormControlLabel value={post.vote1} control={<Radio />} label={post.answer1} onChange={() => vote(post.id, post.answer1)} />
                   <FormControlLabel value={post.vote2} control={<Radio />} label={post.answer2} onChange={() => vote(post.id, post.answer2)} />
                 </RadioGroup> */}
-                <Pie
+                <Doughnut
                   data ={{
                     datasets: [
                       {
