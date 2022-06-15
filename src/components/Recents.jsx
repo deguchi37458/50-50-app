@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 
 import Card from '@mui/material/Card';
-// import ButtonGroup from '@mui/material/ButtonGroup';
-// import Button from '@mui/material/Button';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
+// import Radio from '@mui/material/Radio';
+// import RadioGroup from '@mui/material/RadioGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControl from '@mui/material/FormControl';
 
 import 'chart.js/auto';
 import { Pie } from 'react-chartjs-2';
@@ -27,19 +27,19 @@ const title = css`
   margin-bottom: 20px;
 `;
 
-// const buttonGroup = css`
-//   width: 100%;
-//   display: flex;
-//   gap: 10px;
-//   justify-content: center;
-// `;
-
-const radioGroup = css`
+const buttonGroup = css`
   width: 100%;
   display: flex;
   gap: 10px;
   justify-content: center;
 `;
+
+// const radioGroup = css`
+//   width: 100%;
+//   display: flex;
+//   gap: 10px;
+//   justify-content: center;
+// `;
 
 export const Recents = () => {
 
@@ -55,25 +55,25 @@ export const Recents = () => {
     return unsub;
   }, []);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['vote'])
+  // const [cookies, setCookie, removeCookie] = useCookies(['vote'])
 
-  const vote = (id, answer) => {
-    setCookie(id, answer);
-    console.log(cookies.id);
+  // const vote = (id, answer) => {
+  //   setCookie(id, answer);
+  //   console.log(cookies.id);
+  // }
+
+  const vote1 = async (id) => {
+    updateDoc(doc(db, "posts", id), {
+      vote1 : increment(1)
+    });
+    // setCookie("vote");
   }
-
-  // const vote1 = async (id) => {
-  //   updateDoc(doc(db, "posts", id), {
-  //     vote1 : increment(1)
-  //   });
-  //   setCookie("vote");
-  // }
-  // const vote2 = async (id) => {
-  //   updateDoc(doc(db, "posts", id), {
-  //     vote2 : increment(1)
-  //   });
-  //   setCookie("vote");
-  // }
+  const vote2 = async (id) => {
+    updateDoc(doc(db, "posts", id), {
+      vote2 : increment(1)
+    });
+    // setCookie("vote");
+  }
 
   return (
     <>
@@ -82,17 +82,17 @@ export const Recents = () => {
             <Card>
               <div css={card}>
                 <p css={title}>{post.question}</p>
-                {/* <ButtonGroup css={buttonGroup} disableElevation variant="contained">
+                <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                   <Button name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
                   <Button name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
-                </ButtonGroup> */}
-                <RadioGroup css={radioGroup}
+                </ButtonGroup>
+                {/* <RadioGroup css={radioGroup}
                   aria-labelledby="demo-radio-buttons-group-label"
                   name="radio-buttons-group"
                 >
                   <FormControlLabel value={post.vote1} control={<Radio />} label={post.answer1} onChange={() => vote(post.id, post.answer1)} />
                   <FormControlLabel value={post.vote2} control={<Radio />} label={post.answer2} onChange={() => vote(post.id, post.answer2)} />
-                </RadioGroup>
+                </RadioGroup> */}
                 <Pie
                   data ={{
                     datasets: [
