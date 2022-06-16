@@ -65,6 +65,21 @@ const voteButton2 = css`
 //   justify-content: center;
 // `;
 
+const chartWrap = css`
+  position: relative;
+`;
+
+const voteTotal = css`
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  span {
+    font-size: 20px;
+  }
+`;
+
 export const Recents = () => {
 
   const [posts, setPosts] = useState([]);
@@ -117,26 +132,32 @@ export const Recents = () => {
                   <FormControlLabel value={post.vote1} control={<Radio />} label={post.answer1} onChange={() => vote(post.id, post.answer1)} />
                   <FormControlLabel value={post.vote2} control={<Radio />} label={post.answer2} onChange={() => vote(post.id, post.answer2)} />
                 </RadioGroup> */}
-                <Doughnut
-                  data ={{
-                    datasets: [
-                      {
-                        data: [post.vote1, post.vote2],
-                        backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                        ],
-                        borderWidth: 1,
-                        rotation: 180,
-                        circumference :360,
-                      },
-                    ],
-                  }}
-                />
+                <div css={chartWrap}>
+                  <Doughnut
+                    data ={{
+                      datasets: [
+                        {
+                          data: [post.vote1, post.vote2],
+                          backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                          ],
+                          borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                          ],
+                          borderWidth: 1,
+                          rotation: 180,
+                          circumference :360,
+                        },
+                      ],
+                    }}
+                  />
+                  <div css={voteTotal}>
+                    {post.vote1 + post.vote2}
+                    <span> votes</span>
+                  </div>
+                </div>
               </div>
             </Card>
           )
