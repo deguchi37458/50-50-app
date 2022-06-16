@@ -28,10 +28,14 @@ const container = css`
 
 const title = css`
   font-size: 20px;
+  padding-left: 30px;
   margin-bottom: 20px;
+  position: relative;
   span {
+    position: absolute;
+    top: -2px;
+    left: 0;
     font-size: 24px;
-    margin-right: 5px;
   }
 `;
 
