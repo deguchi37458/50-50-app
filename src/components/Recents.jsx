@@ -19,6 +19,10 @@ import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from
 import { css } from "@emotion/react";
 
 const card = css`
+  margin-bottom: 20px;
+`;
+
+const container = css`
   padding: 20px;
 `;
 
@@ -95,8 +99,8 @@ export const Recents = () => {
     <>
         {posts.map((post) => {
           return (
-            <Card>
-              <div css={card}>
+            <Card css={card}>
+              <div css={container}>
                 <p css={title}><span>Q.</span>{post.question}</p>
                 <ButtonGroup css={buttonGroup} disableElevation variant="contained">
                   <Button css={voteButton1} name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
