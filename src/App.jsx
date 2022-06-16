@@ -10,6 +10,7 @@ import Info from "./components/Info"
 import { Nav } from "./components/Nav"
 
 import "./assets/css/reset.min.css";
+import "./assets/css/style.css";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
