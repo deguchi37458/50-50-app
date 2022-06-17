@@ -27,7 +27,7 @@ export default class Create extends React.Component {
   render() {
     return (
       <>
-        <h1>Create</h1>
+        <h1 class="pageTitle">Create</h1>
         <form>
           <TextField id="outlined-basic" fullWidth="true" sx={{ mb: 2 }} label="Question" variant="outlined" inputRef={this.question} />
           <TextField id="outlined-basic" fullWidth="true" sx={{ mb: 2 }} label="Answer1" variant="outlined" inputRef={this.answer1} />

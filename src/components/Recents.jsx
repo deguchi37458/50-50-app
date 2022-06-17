@@ -116,6 +116,7 @@ export const Recents = () => {
 
   return (
     <>
+      <h1 class="pageTitle">Recents</h1>
         {posts.map((post) => {
           return (
             <Card css={card}>
