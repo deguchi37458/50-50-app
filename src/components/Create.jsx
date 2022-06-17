@@ -29,10 +29,10 @@ export default class Create extends React.Component {
       <>
         <h1>Create</h1>
         <form>
-          <TextField id="outlined-basic" label="Question" variant="outlined" inputRef={this.question} />
-          <TextField id="outlined-basic" label="Answer1" variant="outlined" inputRef={this.answer1} />
-          <TextField id="outlined-basic" label="Answer2" variant="outlined" inputRef={this.answer2} />
-          <Button variant="contained" onClick={this.addPost}>追加</Button>
+          <TextField id="outlined-basic" fullWidth="true" sx={{ mb: 2 }} label="Question" variant="outlined" inputRef={this.question} />
+          <TextField id="outlined-basic" fullWidth="true" sx={{ mb: 2 }} label="Answer1" variant="outlined" inputRef={this.answer1} />
+          <TextField id="outlined-basic" fullWidth="true" sx={{ mb: 2 }} label="Answer2" variant="outlined" inputRef={this.answer2} />
+          <Button variant="contained" align="right" onClick={this.addPost}>追加</Button>
         </form>
       </>
     );
