@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,12 +15,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from 'react-share';
 
 export const Header = () => {
 
-  const [open, setopen] = useState(false);
-  const toggleOpen=() => {
-      setopen(!open);
+  const [listopen, setlistopen] = useState(false);
+  const listOpen=() => {
+      setlistopen(!listopen);
+  }
+
+  const [snsopen, setsnsopen] = useState(false);
+  const snsOpen=() => {
+      setsnsopen(true);
+  }
+  const snsClose=() => {
+      setsnsopen(false);
   }
 
   return (
@@ -32,19 +50,19 @@ export const Header = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              onClick={toggleOpen}
+              onClick={listOpen}
             >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" align="center" sx={{ flexGrow: 1 }}>
               50/50
             </Typography>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={snsOpen}>
               <ShareIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer anchor='left' open={open} onClose={toggleOpen}>
+        <Drawer anchor='left' open={listopen} onClose={listOpen}>
           <List>
             <ListItem>
               <ListItemIcon component={Link} to="/">
@@ -60,6 +78,16 @@ export const Header = () => {
             </ListItem>
           </List>
         </Drawer>
+        <Dialog open={snsopen} onClose={snsClose}>
+          <DialogTitle id="alert-dialog-title">
+          <FacebookShareButton url="location.href">
+            <FacebookIcon/>
+          </FacebookShareButton>
+          <TwitterShareButton url="location.href">
+            <TwitterIcon />
+          </TwitterShareButton>
+          </DialogTitle>
+        </Dialog>
         </Box>
     </>
   )

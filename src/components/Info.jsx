@@ -1,7 +1,7 @@
 import React from "react";
 
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 
 export default class Info extends React.Component {
   render() {
