@@ -32,13 +32,12 @@ export const Header = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
               onClick={toggleOpen}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Ultimate Two Choices
+            <Typography variant="h6" align="center" sx={{ flexGrow: 1 }}>
+              50/50
             </Typography>
             <IconButton color="inherit">
               <ShareIcon />
