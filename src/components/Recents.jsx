@@ -13,7 +13,7 @@ import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 
 import db from  "../firebase";
-import { doc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
+import { doc, getDoc, collection, onSnapshot, updateDoc, query, orderBy, increment} from "firebase/firestore"
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -101,17 +101,29 @@ export const Recents = () => {
   //   console.log(cookies.id);
   // }
 
+  const percentGen = async (id) => {
+    const docRef = doc(db, "posts", id);
+    const docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data().question);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
   const vote1 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote1 : increment(1)
     });
-    // setCookie("vote");
+    percentGen(id);
   }
   const vote2 = async (id) => {
     updateDoc(doc(db, "posts", id), {
       vote2 : increment(1)
     });
-    // setCookie("vote");
+    percentGen(id);
   }
 
   return (
