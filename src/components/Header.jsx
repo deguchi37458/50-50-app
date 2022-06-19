@@ -17,6 +17,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
 
 import {
   FacebookShareButton,
@@ -79,14 +80,17 @@ export const Header = () => {
           </List>
         </Drawer>
         <Dialog open={snsopen} onClose={snsClose}>
-          <DialogTitle id="alert-dialog-title">
+          <DialogTitle id="alert-dialog-title" align="center">
+            シェアする
+          </DialogTitle>
+          <DialogContent>
           <FacebookShareButton url="location.href">
             <FacebookIcon/>
           </FacebookShareButton>
           <TwitterShareButton url="location.href">
             <TwitterIcon />
           </TwitterShareButton>
-          </DialogTitle>
+          </DialogContent>
         </Dialog>
         </Box>
     </>
