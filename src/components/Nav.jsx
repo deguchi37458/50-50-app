@@ -6,7 +6,6 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarIcon from '@mui/icons-material/Star';
 import CreateIcon from '@mui/icons-material/Create';
-import InfoIcon from '@mui/icons-material/Info';
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
@@ -32,7 +31,6 @@ export const Nav = () => {
         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} component={Link} to="/"/>
         <BottomNavigationAction label="Ranking" icon={<StarIcon />} component={Link} to="/ranking"/>
         <BottomNavigationAction label="Create" icon={<CreateIcon />} component={Link} to="/create"/>
-        <BottomNavigationAction label="Info" icon={<InfoIcon />} component={Link} to="/info"/>
       </BottomNavigation>
     </Box>
   );
