@@ -58,7 +58,7 @@ export const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" align="center" sx={{ flexGrow: 1 }}>
+            <Typography variant="h1" align="center" sx={{ flexGrow: 1, fontSize: 26 }}>
               50/50
             </Typography>
             <IconButton color="inherit" onClick={snsOpen}>

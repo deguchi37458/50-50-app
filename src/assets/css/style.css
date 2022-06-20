@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 body {
   font-size: 18px;
-  line-height: 1.8; }
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.8;
+}
 
 .pageTitle {
   font-size: 28px;
   padding: 10px;
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+}
+/*# sourceMappingURL=style.css.map */
