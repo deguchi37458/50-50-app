@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { useCookies } from "react-cookie";
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
@@ -46,18 +47,6 @@ const buttonGroup = css`
   justify-content: center;
 `;
 
-const voteButton1 = css`
-  color: #000; 
-  border: none;
-  background-color: rgba(255, 99, 132, 0.2);
-`;
-
-const voteButton2 = css`
-  color: #000;
-  border: none;
-  background-color: rgba(54, 162, 235, 0.2);
-`;
-
 // const radioGroup = css`
 //   width: 100%;
 //   display: flex;
@@ -79,6 +68,17 @@ const voteTotal = css`
     font-size: 20px;
   }
 `;
+
+const buttonTheme = createTheme({
+  palette: {
+    primary: {
+      main: "rgba(255, 99, 132, 0.2)",
+    },
+    secondary: {
+      main: "rgba(54, 162, 235, 0.2)",
+    },
+  },
+});
 
 export const Recents = () => {
 
@@ -135,8 +135,10 @@ export const Recents = () => {
               <div css={container}>
                 <p css={title}><span>Q.</span>{post.question}</p>
                 <ButtonGroup css={buttonGroup} disableElevation variant="contained">
-                  <Button css={voteButton1} name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
-                  <Button css={voteButton2} name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
+                  <ThemeProvider theme={buttonTheme}>
+                    <Button color="primary" name="answer1" onClick={() => vote1(post.id)}>{post.answer1}</Button>
+                    <Button color="secondary" name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
+                    </ThemeProvider>
                 </ButtonGroup>
                 {/* <RadioGroup css={radioGroup}
                   aria-labelledby="demo-radio-buttons-group-label"
