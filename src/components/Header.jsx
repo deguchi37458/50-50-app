@@ -30,7 +30,10 @@ export const Header = () => {
 
   const [listopen, setlistopen] = useState(false);
   const listOpen=() => {
-      setlistopen(!listopen);
+      setlistopen(true);
+  }
+  const listClose=() => {
+      setlistopen(false);
   }
 
   const [snsopen, setsnsopen] = useState(false);
@@ -63,15 +66,15 @@ export const Header = () => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer anchor='left' open={listopen} onClose={listOpen}>
+        <Drawer anchor='left' open={listopen} onClose={listClose}>
           <List sx={{ width: 200 }}>
-            <ListItem voteButton2 component={Link} to={"/"} >
+            <ListItem button onClick={listClose} component={Link} to={"/"} >
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button component={Link} to={"/info"} >
+            <ListItem button onClick={listClose} component={Link} to={"/info"} >
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
