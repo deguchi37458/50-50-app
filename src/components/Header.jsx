@@ -65,13 +65,13 @@ export const Header = () => {
         </AppBar>
         <Drawer anchor='left' open={listopen} onClose={listOpen}>
           <List sx={{ width: 200 }}>
-            <ListItem>
-              <ListItemIcon component={Link} to="/">
+            <ListItem voteButton2 component={Link} to={"/"} >
+              <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem>
+            <ListItem button component={Link} to={"/info"} >
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
