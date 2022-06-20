@@ -64,7 +64,7 @@ export const Header = () => {
           </Toolbar>
         </AppBar>
         <Drawer anchor='left' open={listopen} onClose={listOpen}>
-          <List>
+          <List sx={{ width: 200 }}>
             <ListItem>
               <ListItemIcon component={Link} to="/">
                 <HomeIcon />
@@ -83,7 +83,7 @@ export const Header = () => {
           <DialogTitle id="alert-dialog-title" align="center">
             シェアする
           </DialogTitle>
-          <DialogContent>
+          <DialogContent sx={{ display: 'grid', gap: 2, gridTemplateColumns: 'repeat(2, 1fr)' }}>
           <FacebookShareButton url="location.href">
             <FacebookIcon/>
           </FacebookShareButton>
