@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import { useCookies } from "react-cookie";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-// import Radio from '@mui/material/Radio';
-// import RadioGroup from '@mui/material/RadioGroup';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import FormControl from '@mui/material/FormControl';
 
 import 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
@@ -46,13 +41,6 @@ const buttonGroup = css`
   gap: 10px;
   justify-content: center;
 `;
-
-// const radioGroup = css`
-//   width: 100%;
-//   display: flex;
-//   gap: 10px;
-//   justify-content: center;
-// `;
 
 const chartWrap = css`
   position: relative;
@@ -94,13 +82,6 @@ export const Recents = () => {
     return unsub;
   }, []);
 
-  // const [cookies, setCookie, removeCookie] = useCookies(['vote'])
-
-  // const vote = (id, answer) => {
-  //   setCookie(id, answer);
-  //   console.log(cookies.id);
-  // }
-
   const percentGen = async (id) => {
     const docRef = doc(db, "posts", id);
     const docSnap = await getDoc(docRef);
@@ -108,7 +89,6 @@ export const Recents = () => {
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data().question);
     } else {
-      // doc.data() will be undefined in this case
       console.log("No such document!");
     }
   }
@@ -140,13 +120,6 @@ export const Recents = () => {
                     <Button color="secondary" name="answer2" onClick={() => vote2(post.id)}>{post.answer2}</Button>
                     </ThemeProvider>
                 </ButtonGroup>
-                {/* <RadioGroup css={radioGroup}
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel value={post.vote1} control={<Radio />} label={post.answer1} onChange={() => vote(post.id, post.answer1)} />
-                  <FormControlLabel value={post.vote2} control={<Radio />} label={post.answer2} onChange={() => vote(post.id, post.answer2)} />
-                </RadioGroup> */}
                 <div css={chartWrap}>
                   <Doughnut
                     data ={{
