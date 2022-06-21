@@ -4,7 +4,7 @@ import { CookiesProvider } from "react-cookie";
 
 import { Header } from "./components/Header"
 import { Recents } from "./components/Recents"
-import Ranking from "./components/Ranking"
+import { Ranking } from "./components/Ranking"
 import Create from "./components/Create"
 import Info from "./components/Info"
 import { Nav } from "./components/Nav"
