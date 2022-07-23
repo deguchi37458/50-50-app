@@ -10,7 +10,7 @@ export const Ranking = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     // コレクションの参照
-    const postRef = query(collection(db, "posts"), orderBy("vote1", "desc"));
+    const postRef = query(collection(db, "posts"), orderBy("voteSum", "desc"));
     // onSnapshotでリアルタイムにデータを取得
     const unsub = onSnapshot(postRef,(querySnapshot) => {
       //querySnapshot.docsの中身を展開。ドキュメントIDをidとする。
@@ -32,13 +32,15 @@ export const Ranking = () => {
 
   const vote1 = async (id) => {
     updateDoc(doc(db, "posts", id), {
-      vote1 : increment(1)
+      vote1 : increment(1),
+      voteSum : increment(1)
     });
     percentGen(id);
   }
   const vote2 = async (id) => {
     updateDoc(doc(db, "posts", id), {
-      vote2 : increment(1)
+      vote2 : increment(1),
+      voteSum : increment(1)
     });
     percentGen(id);
   }

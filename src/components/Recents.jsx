@@ -32,13 +32,15 @@ export const Recents = () => {
 
   const vote1 = async (id) => {
     updateDoc(doc(db, "posts", id), {
-      vote1 : increment(1)
+      vote1 : increment(1),
+      voteSum : increment(1)
     });
     percentGen(id);
   }
   const vote2 = async (id) => {
     updateDoc(doc(db, "posts", id), {
-      vote2 : increment(1)
+      vote2 : increment(1),
+      voteSum : increment(1)
     });
     percentGen(id);
   }
